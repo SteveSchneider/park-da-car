@@ -10,6 +10,29 @@ class VehiclesController < ApplicationController
   def show
   end
 
+  # GET /search
+  def search
+    @vehicle = Vehicle.new
+  end
+
+  def new_from_api
+    respond_to do |format|
+      format.html do
+        vin = vehicle_params[:vin]
+        v = Vehicle.find_by(vin: vin)
+        redirect_to edit_vehicle_url(v) and return if v #check database for vehicle and edit if exists
+
+        response = VehicleApi.decode_vin(vin)
+        if response.present?
+          @vehicle = build_vehicle_from_api(response)
+          redirect_to edit_vehicle_url(@vehicle) if @vehicle.save(validate: false)
+        else
+          render :search, status: :unprocessable_entity
+        end
+      end
+    end
+  end
+
   # GET /vehicles/new
   def new
     @vehicle = Vehicle.new
@@ -66,5 +89,9 @@ class VehiclesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def vehicle_params
       params.require(:vehicle).permit(:vin, :year, :make, :model, :owner_id)
+    end
+
+    def build_vehicle_from_api(response)
+      Vehicle.new(vin: response["VIN"], year: response["ModelYear"], make: response["Make"], model: response["Model"])
     end
 end

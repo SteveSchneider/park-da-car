@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_07_210627) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_08_033639) do
   create_table "activities", force: :cascade do |t|
     t.string "type"
     t.datetime "time"
@@ -58,7 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_07_210627) do
     t.string "year"
     t.string "make"
     t.string "model"
-    t.integer "owner_id", null: false
+    t.integer "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["owner_id"], name: "index_vehicles_on_owner_id"
