@@ -23,10 +23,10 @@ class VehicleApi
         raise StandardError.new("Invalid input type") unless vin_array.is_a? Array
         endpoint = "DecodeVINValuesBatch"
         uri = URI(API_BASE_URL).merge(endpoint)
-        valid_vins = []
-        valid_vins << vin_array.map{ |v| VinHelper.check_format(v) }
-        vins_string = valid_vins
-        response = Net::HTTP.post_form(uri, {"format"=>"json", "data"=> valid_vins.join(";")})
+        #valid_vins = []
+        #valid_vins << vin_array.map{ |v| VinHelper.check_format(v) }
+        #vins_string = valid_vins
+        response = Net::HTTP.post_form(uri, {"format"=>"json", "data"=> vin_array.join(";")})
         body = JSON.parse(response.body)["Results"] if response.is_a? Net::HTTPOK
         err = body.map{ |b| "#{b["VIN"]}:#{b["ErrorText"]}" if b["ErrorCode"].present? }
         raise StandardError.new(err.to_s) unless err.empty?
