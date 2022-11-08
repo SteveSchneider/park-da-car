@@ -15,6 +15,7 @@ class VehiclesController < ApplicationController
     @vehicle = Vehicle.new
   end
 
+  # POST /vehicles/new_from_api
   def new_from_api
     respond_to do |format|
       format.html do
@@ -23,11 +24,12 @@ class VehiclesController < ApplicationController
         redirect_to edit_vehicle_url(v) and return if v #check database for vehicle and edit if exists
 
         response = VehicleApi.decode_vin(vin)
-        if response.present?
+        if response.present? && vin == response["VIN"]
           @vehicle = build_vehicle_from_api(response)
           redirect_to edit_vehicle_url(@vehicle) if @vehicle.save(validate: false)
         else
-          render :search, status: :unprocessable_entity
+          flash[:error] = "VIN did not match API result"
+          redirect_to search_url, status: :not_found
         end
       end
     end

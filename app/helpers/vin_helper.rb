@@ -1,6 +1,6 @@
 module VinHelper
     def self.check_format(vin)
-      #TODO add regex check
-      vin
+      return vin if vin.match?(/[A-HJ-NPR-Z0-9]{17}/)
+      raise StandardError.new("Invalid parameter")
     end
 end
