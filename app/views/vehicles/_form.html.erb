@@ -33,7 +33,8 @@
 
   <div>
     <%= form.label :owner_id, style: "display: block" %>
-    <%= form.text_field :owner_id %>
+    <%= form.select :owner_id, Owner.all.collect { |o| [ o.name, o.id ] }, include_blank: true %>
+    <!--<%= form.text_field :owner_id %>-->
   </div>
 
   <div>
