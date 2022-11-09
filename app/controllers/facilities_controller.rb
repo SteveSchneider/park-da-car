@@ -65,6 +65,6 @@ class FacilitiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def facility_params
-      params.require(:facility).permit(:name, :address, :parking_spot, :vehicle_id)
+      params.require(:facility).permit(:name, :address, :parking_spot)
     end
 end

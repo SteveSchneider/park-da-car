@@ -34,8 +34,8 @@
   <div>
     <%= form.fields_for :vehicle, vehicle  do |vehicle_attributes|%>
       <%if activity.check_in? %>
-        <%= vehicle_attributes.label :facility, "Parking Location:" %>
-        <%= vehicle_attributes.select :facility, Facility.vacant.collect { |f| [ "#{f.name} : #{f.parking_spot}", f.id ] } %>
+        <%= vehicle_attributes.label :facility_id, "Parking Location:" %>
+        <%= vehicle_attributes.select :facility_id, Facility.vacant.collect { |f| [ "#{f.name} : #{f.parking_spot}", f.id ] } %>
       <% else %>
         <!-- add hidden form field with nil value-->
       <% end %>

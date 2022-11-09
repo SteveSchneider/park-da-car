@@ -1,6 +1,6 @@
 class Vehicle < ApplicationRecord
   belongs_to :owner
-  has_many :activity
+  has_many :activities
   has_one :facility
 
   scope :checked_out, -> { where( activity_type: "O" ) }

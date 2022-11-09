@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_09_034029) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_09_170806) do
   create_table "activities", force: :cascade do |t|
     t.string "activity_type"
     t.datetime "time"
@@ -26,10 +26,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_09_034029) do
     t.string "name"
     t.string "address"
     t.integer "parking_spot"
-    t.integer "vehicle_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["vehicle_id"], name: "index_facilities_on_vehicle_id"
   end
 
   create_table "owners", force: :cascade do |t|
@@ -61,12 +59,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_09_034029) do
     t.integer "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "facility_id"
     t.index ["owner_id"], name: "index_vehicles_on_owner_id"
   end
 
   add_foreign_key "activities", "users"
   add_foreign_key "activities", "vehicles"
-  add_foreign_key "facilities", "vehicles"
   add_foreign_key "owners", "vehicles"
   add_foreign_key "vehicles", "owners"
 end
