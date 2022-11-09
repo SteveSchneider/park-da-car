@@ -7,4 +7,7 @@
   <%= link_to "Back to vehicles", vehicles_path %>
 
   <%= button_to "Destroy this vehicle", @vehicle, method: :delete %>
+
+  <% action = @vehicle.checked_in? ? "out" : "in" %>
+  <%= button_to "Check vehicle #{action.upcase}", "/vehicles/#{action}/#{@vehicle.id}", method: :get %>
 </div>

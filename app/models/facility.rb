@@ -1,3 +1,5 @@
 class Facility < ApplicationRecord
-  belongs_to :vehicle
+  has_one :vehicle
+
+  scope :vacant, -> { where( vehicle_id: nil ) }
 end

@@ -15,6 +15,20 @@ class ActivitiesController < ApplicationController
     @activity = Activity.new
   end
 
+  #GET /vehicles/in/1
+  def new_in
+    @activity = Activity.new(activity_type: "I", time: DateTime.now)
+    @vehicle = Vehicle.find(params[:id])
+    redirect_to url_for(action: 'new_out', controller: 'activities') if @vehicle.checked_in?
+  end
+
+  #GET /vehicles/out/1
+  def new_out
+    @activity = Activity.new(activity_type: "O", time: DateTime.now)
+    @vehicle = Vehicle.find(params[:id])
+    redirect_to url_for(action: 'new_in', controller: 'activities') if @vehicle.checked_out?
+  end
+
   # GET /activities/1/edit
   def edit
   end
@@ -22,13 +36,14 @@ class ActivitiesController < ApplicationController
   # POST /activities or /activities.json
   def create
     @activity = Activity.new(activity_params)
-
+    @vehicle = @activity.vehicle
     respond_to do |format|
       if @activity.save
         format.html { redirect_to activity_url(@activity), notice: "Activity was successfully created." }
         format.json { render :show, status: :created, location: @activity }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        #format.html { render :new, status: :unprocessable_entity }
+        format.html { render :new_in, status: :unprocessable_entity }
         format.json { render json: @activity.errors, status: :unprocessable_entity }
       end
     end
@@ -65,6 +80,6 @@ class ActivitiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def activity_params
-      params.require(:activity).permit(:type, :time, :user_id)
+      params.require(:activity).permit(:activity_type, :time, :user_id, :vehicle_id)
     end
 end

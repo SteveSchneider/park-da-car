@@ -10,21 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_08_033639) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_09_034029) do
   create_table "activities", force: :cascade do |t|
-    t.string "type"
+    t.string "activity_type"
     t.datetime "time"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "vehicle_id", null: false
     t.index ["user_id"], name: "index_activities_on_user_id"
+    t.index ["vehicle_id"], name: "index_activities_on_vehicle_id"
   end
 
   create_table "facilities", force: :cascade do |t|
     t.string "name"
     t.string "address"
     t.integer "parking_spot"
-    t.integer "vehicle_id", null: false
+    t.integer "vehicle_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["vehicle_id"], name: "index_facilities_on_vehicle_id"
@@ -47,10 +49,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_08_033639) do
     t.string "first_name"
     t.string "last_name"
     t.string "type"
-    t.integer "activity_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["activity_id"], name: "index_users_on_activity_id"
   end
 
   create_table "vehicles", force: :cascade do |t|
@@ -65,8 +65,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_08_033639) do
   end
 
   add_foreign_key "activities", "users"
+  add_foreign_key "activities", "vehicles"
   add_foreign_key "facilities", "vehicles"
   add_foreign_key "owners", "vehicles"
-  add_foreign_key "users", "activities"
   add_foreign_key "vehicles", "owners"
 end
