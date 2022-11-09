@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+case Rails.env
+when "development"
+    20.times{ |i| Facility.create(name: "Large Garage", address:"123 Sample St.", parking_spot: i) }
+    10.times{ |i| Facility.create(name: "Small Lot", address:"127 Sample St.", parking_spot: i) }
+    User.create(email: "admin@example.com", first_name: "Admin", last_name: "User")
+    Owner.create(name: "John Cena", address: "1 Main St.", email:"john@example.com", phone: "555-123-4567")
+end
