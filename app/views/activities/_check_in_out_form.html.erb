@@ -37,23 +37,16 @@
         <%= vehicle_attributes.label :facility_id, "Parking Location:" %>
         <%= vehicle_attributes.select :facility_id, Facility.vacant.collect { |f| [ "#{f.name} : #{f.parking_spot}", f.id ] } %>
       <% else %>
-        <!-- add hidden form field with nil value-->
+         <%= vehicle_attributes.hidden_field :facility_id, :value => nil %>
       <% end %>
     <% end %>
   </div>
-
-  <!--
-  <div>
-    <%= form.label :facility_id, style: "display: block" %>
-    <%= form.select :facility_id, Facility.vacant.collect { |f| [ "#{f.name} : #{f.parking_spot}", f.id ] }, include_blank: true %>
-  </div>
-  -->
 
   <div>
     <% if Facility.vacant.present? or activity.check_out? %>
       <%= form.submit 'Save'%>
     <% else %>
-      <%= form.submit 'Parking Full', :disabled => true %>
+      <%= form.submit 'Parking Facilities Full', :disabled => true %>
     <% end %>
   </div>
 <% end %>

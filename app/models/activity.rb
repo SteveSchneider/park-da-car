@@ -1,6 +1,6 @@
 class Activity < ApplicationRecord
   has_one :user
-  has_one :vehicle
+  belongs_to :vehicle
 
   accepts_nested_attributes_for :vehicle, update_only: true
 

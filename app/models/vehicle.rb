@@ -18,6 +18,10 @@ class Vehicle < ApplicationRecord
     return false
   end
 
+  def facility
+    Facility.find(self.facility_id)
+  end
+
   private
 
   def last_activity
