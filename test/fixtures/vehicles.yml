@@ -5,11 +5,13 @@ one:
   year: MyString
   make: MyString
   model: MyString
-  owner: one
+  owner_id: two
+  facility_id: two
 
 two:
   vin: MyString
   year: MyString
   make: MyString
   model: MyString
-  owner: two
+  owner_id: two
+  facility_id: two

@@ -5,13 +5,9 @@ one:
   password_digest: MyString
   first_name: MyString
   last_name: MyString
-  type: 
-  activity: one
 
 two:
   email: MyString
   password_digest: MyString
   first_name: MyString
   last_name: MyString
-  type: 
-  activity: two

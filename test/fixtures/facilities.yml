@@ -4,10 +4,8 @@ one:
   name: MyString
   address: MyString
   parking_spot: 1
-  vehicle: one
 
 two:
   name: MyString
   address: MyString
   parking_spot: 1
-  vehicle: two
