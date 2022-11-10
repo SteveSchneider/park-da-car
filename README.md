@@ -1,8 +1,8 @@
 # README
    ## running from clone:
    ```
-   rails db:migrate
-   rails db:seed
+   git init
+   rails db:reset
    rails rails css:install:bootstrap
    rails javascript:install:esbuild
    rails assets:precompile

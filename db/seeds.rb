@@ -11,4 +11,5 @@ when "development"
     10.times{ |i| Facility.create(name: "Small Lot", address:"127 Sample St.", parking_spot: i) }
     User.create(email: "admin@example.com", first_name: "Admin", last_name: "User")
     Owner.create(name: "John Cena", address: "1 Main St.", email:"john@example.com", phone: "555-123-4567")
+    Vehicle.create(vin:"5XYKT3A12CG000000", year: "2012", make: "KIA", model: "Sorento", owner_id: 1)
 end
