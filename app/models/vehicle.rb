@@ -3,19 +3,17 @@ class Vehicle < ApplicationRecord
   has_many :activities
   has_one :facility
 
-  scope :checked_out, -> { where( activity_type: "O" ) }
-  scope :checked_in, -> { where( activity_type: "I" ) }
+  scope :checked_out, -> { where( facility_id: nil ) }
+  scope :checked_in, -> { where.not( facility_id: nil ) }
 
   validates :vin, length: {is: 17}
 
   def checked_out?
-    return true if last_activity == "O"
-    return false
+    self.facility.blank?
   end
 
   def checked_in?
-    return true if last_activity == "I"
-    return false
+    self.facility.present?
   end
 
   def facility
