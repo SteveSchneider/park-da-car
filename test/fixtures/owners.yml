@@ -5,11 +5,9 @@ one:
   address: MyString
   email: MyString
   phone: MyString
-  vehicle_id: one
 
 two:
   name: MyString
   address: MyString
   email: MyString
   phone: MyString
-  vehicle_id: two

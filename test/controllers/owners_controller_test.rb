@@ -17,7 +17,7 @@ class OwnersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create owner" do
     assert_difference("Owner.count") do
-      post owners_url, params: { owner: { address: @owner.address, email: @owner.email, name: @owner.name, phone: @owner.phone, vehicle_id: @owner.vehicle_id } }
+      post owners_url, params: { owner: { address: @owner.address, email: @owner.email, name: @owner.name, phone: @owner.phone } }
     end
 
     assert_redirected_to owner_url(Owner.last)
@@ -34,7 +34,7 @@ class OwnersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update owner" do
-    patch owner_url(@owner), params: { owner: { address: @owner.address, email: @owner.email, name: @owner.name, phone: @owner.phone, vehicle_id: @owner.vehicle_id } }
+    patch owner_url(@owner), params: { owner: { address: @owner.address, email: @owner.email, name: @owner.name, phone: @owner.phone } }
     assert_redirected_to owner_url(@owner)
   end
 

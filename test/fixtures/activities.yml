@@ -3,11 +3,11 @@
 one:
   activity_type: "I"
   time: 2022-11-07 16:04:55
-  user_id: one
-  vehicle_id: one
+  user_id: 1
+  vehicle_id: 1
 
 two:
   activity_type: "O"
   time: 2022-11-07 16:04:55
-  user_id: two
-  vehicle_id: two
+  user_id: 2
+  vehicle_id: 2
