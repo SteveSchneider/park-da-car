@@ -8,6 +8,8 @@ class Vehicle < ApplicationRecord
 
   validates :vin, length: {is: 17}
 
+  ACTIVITY_TYPES = {"O" => "Check Out", "I"=> "Check In"}.freeze
+
   def checked_out?
     self.facility.blank?
   end
@@ -21,9 +23,17 @@ class Vehicle < ApplicationRecord
     nil
   end
 
+  def last_activity_time
+    last_activity&.time&.strftime("%Y/%m/%d %I:%M:%S %p")
+  end
+
+  def last_activity_type
+    ACTIVITY_TYPES[last_activity&.activity_type]
+  end
+
   private
 
   def last_activity
-    Activity.where(vehicle_id: self.id)&.last&.activity_type
+    Activity.where(vehicle_id: self.id)&.last
   end
 end
