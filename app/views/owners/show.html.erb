@@ -1,10 +1,13 @@
 <!--<p style="color: green"><%= notice %></p>-->
-
+<div class="card">
+<div class="card-body">
 <%= render @owner %>
 
 <div>
-  <%= link_to "Edit this owner", edit_owner_path(@owner) %> |
-  <%= link_to "Back to owners", owners_path %>
+  <%= link_to "Edit this owner", edit_owner_path(@owner), class: "btn btn-link" %> |
+  <%= link_to "Back to owners", owners_path, class: "btn btn-link" %>
 
-  <%= button_to "Destroy this owner", @owner, method: :delete %>
+  <%= button_to "Destroy this owner", @owner, class: "btn btn-danger", method: :delete %>
+</div>
+</div>
 </div>

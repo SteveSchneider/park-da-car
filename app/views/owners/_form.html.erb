@@ -1,4 +1,6 @@
 <%= form_with(model: owner) do |form| %>
+<div class="card">
+  <div class="card-body">
   <% if owner.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(owner.errors.count, "error") %> prohibited this owner from being saved:</h2>
@@ -37,6 +39,8 @@
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
+  </div>
+</div>
 <% end %>

@@ -1,13 +1,16 @@
 <!--<p style="color: green"><%= notice %></p>-->
-
+<div class="card">
+<div class="card-body">
 <%= render @vehicle %>
 
 <div>
-  <%= link_to "Edit this vehicle", edit_vehicle_path(@vehicle) %> |
-  <%= link_to "Back to vehicles", vehicles_path %>
+  <%= link_to "Edit this vehicle", edit_vehicle_path(@vehicle), class:"btn btn-link" %> |
+  <%= link_to "Back to vehicles", vehicles_path, class:"btn btn-link" %>
 
-  <%= button_to "Destroy this vehicle", @vehicle, method: :delete %>
+  <%= button_to "Destroy this vehicle", @vehicle, class: "btn btn-danger", method: :delete %>
 
   <% action = @vehicle.checked_in? ? "out" : "in" %>
-  <%= button_to "Check vehicle #{action.upcase}", "/vehicles/#{action}/#{@vehicle.id}", method: :get %>
+  <%= button_to "Check vehicle #{action.upcase}", "/vehicles/#{action}/#{@vehicle.id}", class: "btn btn-primary", method: :get %>
+</div>
+</div>
 </div>
