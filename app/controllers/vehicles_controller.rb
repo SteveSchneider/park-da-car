@@ -3,7 +3,7 @@ class VehiclesController < ApplicationController
 
   # GET /vehicles or /vehicles.json
   def index
-    @vehicles = Vehicle.all
+    @vehicles = (index_params[:checked_in] == "1" ? Vehicle.checked_in : Vehicle.all)
   end
 
   # GET /vehicles/1 or /vehicles/1.json
@@ -91,6 +91,10 @@ class VehiclesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def vehicle_params
       params.require(:vehicle).permit(:vin, :year, :make, :model, :owner_id, :facility_id)
+    end
+
+    def index_params
+      params.permit(:checked_in)
     end
 
     def build_vehicle_from_api(response)

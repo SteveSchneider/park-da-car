@@ -4,7 +4,7 @@
     <h1>Vehicles</h1>
   </div>
   <div class="col-6">
-    <%= link_to "New vehicle", new_vehicle_path, class: "btn btn-info" %>
+    <%= link_to "New vehicle", search_path, class: "btn btn-info" %>
   </div>
 </div>
 
@@ -15,6 +15,7 @@
     <%= render vehicle %>
     <p>
       <%= link_to "Show this vehicle", vehicle, class: "btn btn-link" %>
+      <%= (link_to "Locate", facility_path(vehicle.facility), class: "btn btn-link bi bi-map") if vehicle.checked_in?%>
     </p>
   </div>
   </div>

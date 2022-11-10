@@ -17,7 +17,8 @@ class Vehicle < ApplicationRecord
   end
 
   def facility
-    Facility.find(self.facility_id)
+    return Facility.find(self&.facility_id) if self.facility_id
+    nil
   end
 
   private

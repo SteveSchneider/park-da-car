@@ -39,8 +39,13 @@ class ActivitiesController < ApplicationController
     @vehicle = @activity.vehicle
     respond_to do |format|
       if @activity.save
-        format.html { redirect_to activity_url(@activity), notice: "Activity was successfully created." }
-        format.json { render :show, status: :created, location: @activity }
+        if @activity.activity_type.in? ["O", "I"]
+          format.html { redirect_to vehicles_path(checked_in: "1"), notice: "Vehicle status updated." }
+          format.json { render :show, status: :created, location: @activity }
+        else
+          format.html { redirect_to activity_url(@activity), notice: "Activity was successfully created." }
+          format.json { render :show, status: :created, location: @activity }
+        end
       else
         #format.html { render :new, status: :unprocessable_entity }
         format.html { render :new_in, status: :unprocessable_entity }
